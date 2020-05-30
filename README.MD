@@ -1,5 +1,5 @@
 # GUIDE_AMDGPU-Mining-Ubuntu-20.04-LTS-Server-HWE
-Guide to set all up for amdgpu's mining in Ubuntu Server LTS environnement! I spent a lot of times in learning, trickering, testing, improving tools and configs to write this guide for beginners level understanding. 
+Guide to set all up for amdgpu's mining in Ubuntu Server LTS environnement; with some Vega 56 Pulse files! I spent a lot of times in learning, trickering, testing, improving tools and configs to write this guide for beginners level understanding. 
 If it's ok for you (i'm sure it will be..:)..) please consider donation, it would be very appreciated!
 ```sh
 ETH: 0x691318ab130Bb4B82a521C59Cac60B417e003675

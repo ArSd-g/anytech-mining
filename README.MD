@@ -40,8 +40,13 @@ sudo nano /etc/fstab
 Install HWE Kernel and zram for automated swap configuration
 ```sh
 sudo apt update
-sudo apt install --install-recommends linux-generic-hwe-20.04 zram-config
+sudo apt install --install-recommends linux-generic-hwe-20.04
 sudo apt upgrade
+git clone https://github.com/StuartIanNaylor/zram-swap-config
+cd zram-swap-config
+chmod +x install.sh && sudo ./install.sh
+cd ..
+rm -r zram-swap-config
 ```
 ### AMD tweaks, fall back to ethX network interface naming
 Edit the grub configuration file:

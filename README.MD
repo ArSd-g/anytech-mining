@@ -108,6 +108,40 @@ sudo apt update && sudo apt upgrade
 sudo apt install wget build-essential cmake git libuv1-dev libssl-dev libhwloc-dev libmicrohttpd-dev lm-sensors htop opencl-amdgpu-pro-dev clinfo
 sudo reboot
 ```
+### RainbowMiner Installation
+RainbowMiner is for me, the best multipool mining manager ever coded; feel free to install or choose to mine without!
+[More Here](https://github.com/RainbowMiner/RainbowMiner)
+```sh
+sudo apt-get update
+git clone https://github.com/rainbowminer/RainbowMiner
+cd RainbowMiner
+chmod +x *.sh
+sudo ./install.sh
+sudo ./start.sh ### Will start RainbowMiner; insure all is ready for it!
+```
+### SSH Remote Control
+If you didn't check openssh installation during Ubuntu install:
+```sh
+sudo apt-get update
+sudo apt-get install openssh-server
+```
+You are ready to log into your remote machine type on another computer to access
+```sh
+ssh username@public_IP
+```
+If you do not know the IP address, you can quickly identify it through the terminal by typing the command:
+```sh
+ip a
+```
+If you want to improve security and ssh config (non standard port, or encrypt access) see: https://phoenixnap.com/kb/how-to-enable-ssh-on-ubuntu
+
+### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html), 
+Terminal multiplexer to prevent mining activities to be stopped when SSH session is closed, you find full config file in my tools, just copy to home folder.
+
+For exemple: if your SSH session number 0 ends and you want to get back existing Tmux session when reconnecting
+```sh
+tmux attach -t 0
+```
 ### Tools
 Here is my ultimate collection of tools to Overclock and Mine over Linux.NOT WORKING?! =check path/directories commands.
 
@@ -143,51 +177,9 @@ sudo ./setPPT.sh 1 V56V3PPT
 ```sh
 sudo ./moniterGPU.sh 5 1
 ```
-### RainbowMiner Installation
-
-RainbowMiner is for me, the best multipool mining manager ever coded; feel free to install or choose to mine without!
-[More Here](https://github.com/RainbowMiner/RainbowMiner)
-```sh
-sudo apt-get update
-git clone https://github.com/rainbowminer/RainbowMiner
-cd RainbowMiner
-chmod +x *.sh
-sudo ./install.sh
-sudo ./start.sh ### Will start RainbowMiner; insure all is ready for it!
-```
-### SSH Remote Control
-If you didn't check openssh installation during Ubuntu install:
-```sh
-sudo apt-get update
-sudo apt-get install openssh-server
-```
-You are ready to log into your remote machine type on another computer to access
-```sh
-ssh username@public_IP
-```
-If you do not know the IP address, you can quickly identify it through the terminal by typing the command:
-```sh
-ip a
-```
-If you want to improve security and ssh config (non standard port, or encrypt access) see: https://phoenixnap.com/kb/how-to-enable-ssh-on-ubuntu
-
-### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html), terminal multiplexer # ####to prevent mining activities to be stopped when SSH session is closed
-
-Enable mouse scrolling in tmux
-```sh
-echo "set -g mouse on" >> ~/.tmux.conf 
-```
-For exemple; if your SSH session ends and you want to get back existing Tmux session when reconnecting
-```sh
-tmux attach
-```
 ### You are READY!
 Take a deep breath and get ready to configure RainbowMiner
-```sh
-tmux
-cd RainbowMiner
-sudo ./start.sh
-```
+
 I hope this guide was clear and precise, feel free to contact me for suggestions, questions, corrections or just to say thanks!
 
 ### Donate:

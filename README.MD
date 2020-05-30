@@ -89,7 +89,7 @@ wget https://drivers.amd.com/drivers/linux/19.50/amdgpu-pro-19.50-967956-ubuntu-
 tar -Jxvf amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz
 cd amdgpu-pro-19.50-967956-ubuntu-18.04
 ```
-Edit OS infor file to change '20.04' to '18.04'
+Edit OS-Version file to change '20.04' to '18.04'
 ```sh
 sudo nano /etc/os-release
 ./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless --no-dkms

@@ -88,7 +88,15 @@ sudo reboot
 wget https://drivers.amd.com/drivers/linux/19.50/amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz --referer http://support.amd.com/en-us/kb-articles/Pages/Radeon-Software-for-Linux-Release-Notes.aspx
 tar -Jxvf amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz
 cd amdgpu-pro-19.50-967956-ubuntu-18.04
+```
+Edit OS infor file to change '20.04' to '18.04'
+```sh
+sudo nano /etc/os-release
 ./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless --no-dkms
+```
+Edit again to revert change to 20.04
+```sh
+sudo nano /etc/os-release
 ```
 Add yourself to the video group
 ```sh
@@ -98,6 +106,7 @@ sudo usermod -aG video $LOGNAME
 ```sh
 sudo apt update && sudo apt upgrade
 sudo apt install wget build-essential cmake git libuv1-dev libssl-dev libhwloc-dev libmicrohttpd-dev lm-sensors htop opencl-amdgpu-pro-dev clinfo
+sudo reboot
 ```
 ### Tools
 Here is my ultimate collection of tools to Overclock and Mine over Linux.NOT WORKING?! =check path/directories commands.
@@ -105,12 +114,6 @@ Here is my ultimate collection of tools to Overclock and Mine over Linux.NOT WOR
 - Install
 ```sh
 git clone https://github.com/ArSd-g/AMDGPU-Mining-Ubuntu-20.04-LTS-Server-HWE
-```
-- ROCm-Smi
-```sh
-chmod +x rocm-smi
-sudo cp rocm-smi /usr/bin
-sudo rocm-smi -h
 ```
 - Atiflash
 ```sh
@@ -134,7 +137,7 @@ sudo ./hugep2.sh
 ```
 - Write Power Play Table, in this exemple for GPU number 1 write the content of V56V3PPT, reset on every reboot!
 ```sh
-sudo ./setPPT.sh 1 V56V3PPT3
+sudo ./setPPT.sh 1 V56V3PPT
 ```
 - Monitor GPU, in this exemple it will monitor GPU number 1 and print infos checking every 5s
 ```sh

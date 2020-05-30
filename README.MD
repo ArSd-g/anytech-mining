@@ -171,7 +171,7 @@ ip a
 ```
 If you want to improve security and ssh config (non standard port, or encrypt access) see: https://phoenixnap.com/kb/how-to-enable-ssh-on-ubuntu
 
-### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html), terminal multiplexer to prevent mining activities to be stopped when SSH session is closed
+### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html), terminal multiplexer # ####to prevent mining activities to be stopped when SSH session is closed
 
 Enable mouse scrolling in tmux
 ```sh

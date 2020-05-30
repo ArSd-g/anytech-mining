@@ -135,7 +135,7 @@ ip a
 ```
 If you want to improve security and ssh config (non standard port, or encrypt access) see: https://phoenixnap.com/kb/how-to-enable-ssh-on-ubuntu
 
-### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html), 
+### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html) 
 Terminal multiplexer to prevent mining activities to be stopped when SSH session is closed, you find full config file in my tools, just copy to home folder.
 
 For exemple: if your SSH session number 0 ends and you want to get back existing Tmux session when reconnecting

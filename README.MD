@@ -138,7 +138,7 @@ If you do not know the IP address, you can quickly identify it through the termi
 ```sh
 ip a
 ```
-If you want to improve security and ssh config (non standard port, or encrypt access) see: https://phoenixnap.com/kb/how-to-enable-ssh-on-ubuntu
+If you want to improve security and ssh config (non standard port, or encrypt access) see:https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/
 
 ### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html) 
 Terminal multiplexer to prevent mining activities to be stopped when SSH session is closed, you find full config file in my tools, just copy to home folder as .tmux.conf
@@ -200,6 +200,7 @@ Special thanks for they awesome job and wonderfull tools and guides to:
 - **https://github.com/RainbowMiner/RainbowMiner**
 - **https://github.com/czombos/AMDGPU-XMR-ETH-Mining-Ubuntu**
 - **https://github.com/patrickschur/amdvbflash**
+- **https://github.com/StuartIanNaylor/zram-swap-config
 
 ### Links&Docs
 - **https://releases.ubuntu.com**
@@ -208,8 +209,6 @@ Special thanks for they awesome job and wonderfull tools and guides to:
 - **https://wiki.ubuntu.com/Kernel/LTSEnablementStack**
 - **https://www.amd.com/en/support/kb/release-notes/rn-rad-lin-19-50-unified**
 - **https://www.cyberciti.biz/tips/linux-swap-space.html**
-- **https://itsfoss.com/create-swap-file-linux/**
-- **https://github.com/RadeonOpenCompute/ROC-smi**
 - **https://xmrig.com/docs/miner/hugepages**
-- **https://phoenixnap.com/kb/how-to-enable-ssh-on-ubuntu**
+- **https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/
 

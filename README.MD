@@ -200,7 +200,7 @@ Special thanks for they awesome job and wonderfull tools and guides to:
 - **https://github.com/RainbowMiner/RainbowMiner**
 - **https://github.com/czombos/AMDGPU-XMR-ETH-Mining-Ubuntu**
 - **https://github.com/patrickschur/amdvbflash**
-- **https://github.com/StuartIanNaylor/zram-swap-config
+- **https://github.com/StuartIanNaylor/zram-swap-config**
 
 ### Links&Docs
 - **https://releases.ubuntu.com**
@@ -210,5 +210,5 @@ Special thanks for they awesome job and wonderfull tools and guides to:
 - **https://www.amd.com/en/support/kb/release-notes/rn-rad-lin-19-50-unified**
 - **https://www.cyberciti.biz/tips/linux-swap-space.html**
 - **https://xmrig.com/docs/miner/hugepages**
-- **https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/
+- **https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/**
 

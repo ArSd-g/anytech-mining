@@ -91,7 +91,7 @@ sudo reboot
 [AMDGPU Community Ubuntu](https://help.ubuntu.com/community/AMDGPU-Driver)
 ```sh
 wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20
-tar -Jxvf amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz
+tar -Jxvf amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz.l
 cd amdgpu-pro-20.20-1089974-ubuntu-20.04
 ```
 Add yourself to the video group

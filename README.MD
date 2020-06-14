@@ -90,18 +90,9 @@ sudo reboot
 ### Install AMDGPU Driver + OpenCL
 [AMDGPU Community Ubuntu](https://help.ubuntu.com/community/AMDGPU-Driver)
 ```sh
-wget https://drivers.amd.com/drivers/linux/19.50/amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz --referer http://support.amd.com/en-us/kb-articles/Pages/Radeon-Software-for-Linux-Release-Notes.aspx
-tar -Jxvf amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz
-cd amdgpu-pro-19.50-967956-ubuntu-18.04
-```
-Edit OS-Version file to change '20.04' to '18.04'
-```sh
-sudo nano /etc/os-release
-./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless --no-dkms
-```
-Edit again to revert change to 20.04
-```sh
-sudo nano /etc/os-release
+wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20
+tar -Jxvf amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz
+cd amdgpu-pro-20.20-1089974-ubuntu-20.04
 ```
 Add yourself to the video group
 ```sh

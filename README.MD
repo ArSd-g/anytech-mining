@@ -5,21 +5,29 @@ If it's ok for you (i'm sure it will be..:)..) please consider donation, it woul
 ETH: 0x691318ab130Bb4B82a521C59Cac60B417e003675
 BTC: 3Ec5UjkZxXjM92s53U9w7SRQuhHEm7x2HH
 XMR: 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CW9BZBGeRUR69Tp5AVj
+Ubuntu Server with the HWE kernel, FS Partition (fast I/O Capability) and   auto-swap (file).
+Ubuntu Server with the HWE kernel, FS Partition (fast I/O Capability) and   auto-swap (file).
 ```
 ![alt text](https://i.postimg.cc/zBJwNzgj/Capture-d-cran-du-2020-05-30-12-15-58.png)
 
 ### Install 
-Ubuntu Server with the HWE kernel with btrfs partition and zram swap.
+#### Burn it on USB Key then boot and follow the installer instructions.
+Ubuntu Server with XFS Partition (fast I/O Capability) and auto-swap creation (file).
 Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...
 **[Ubuntu 20.04 LTS ISO](https://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso)** 
-
-#### Burn it on USB Key then boot and follow the installer instructions.
 
 ### Ubuntu Config
 Sudoers file, enable NOPASSWD for user, all commands
 ```sh
 sudo visudo
-Replace %sudo ALL=(ALL:ALL) ALL line to %sudo ALL=(ALL:ALL) NOPASSWD: ALL
+```
+Replace: 
+```sh
+%sudo ALL=(ALL:ALL) ALL line 
+```
+to 
+```sh
+%sudo ALL=(ALL:ALL) NOPASSWD: ALL
 ```
 Locales fix, adapt to your localisation
 ```sh
@@ -30,23 +38,9 @@ sudo dpkg-reconfigure locales
 ```
 ### HWE Kernel Install 
 ```sh
-sudo swapoff -a
-sudo rm /swap.img
-```
-Delete Swap Files entries in /etc/fstab
-```sh
-sudo nano /etc/fstab
-```
-Install HWE Kernel and zram for automated swap configuration
-```sh
 sudo apt update
 sudo apt install --install-recommends linux-generic-hwe-20.04
 sudo apt upgrade
-git clone https://github.com/StuartIanNaylor/zram-swap-config
-cd zram-swap-config
-chmod +x install.sh && sudo ./install.sh
-cd ..
-rm -r zram-swap-config
 ```
 ### AMD tweaks, fall back to ethX network interface naming
 Edit the grub configuration file:
@@ -89,6 +83,20 @@ sudo reboot
 
 ### Install AMDGPU Driver + OpenCL
 [AMDGPU Community Ubuntu](https://help.ubuntu.com/community/AMDGPU-Driver)
+NOTE: If you experience some problems or low hashrates stick to 19.50 or 19.30 (RX Vega56/64 for exemple).
+Modify OS-Release infos replacing '20.04' by '18.04':
+```sh
+sudo nano /etc/os-release
+wget https://drivers.amd.com/drivers/linux/19.50/amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-rad-lin-19-50-unified
+tar -Jxvf amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz
+cd amdgpu-pro-19.50-967956-ubuntu-18.04
+./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless --no-dkms
+```
+Write back original value from '18.04' to '20.04' en OS-Release infos:
+```sh
+sudo nano /etc/os-release
+```
+Or go to the latest drivers for Ubuntu 20.04
 ```sh
 wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20
 tar -Jxvf amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz.l
@@ -122,7 +130,7 @@ If you didn't check openssh installation during Ubuntu install:
 sudo apt-get update
 sudo apt-get install openssh-server
 ```
-You are ready to log into your remote machine type on another computer to access
+You are ready to log into your remote machine type on another computer to access:
 ```sh
 ssh username@public_IP
 ```
@@ -140,40 +148,102 @@ For exemple: if your SSH session number 0 ends and you want to get back existing
 tmux attach -t 0
 ```
 ### Tools
-Here is my ultimate collection of tools to Overclock and Mine over Linux.NOT WORKING?! =check path/directories commands.
-
-- Install
+Here is my ultimate collection of tools to Overclock and Mine over Linux.
+NOT WORKING?! =check path/directories commands.
 ```sh
 git clone https://github.com/ArSd-g/AMDGPU-Mining-Ubuntu-20.04-LTS-Server-HWE
 ```
-- Atiflash
+#### Atiflash
 ```sh
 chmod +x atiflash
 sudo cp atiflash /usr/bin
 sudo atiflash -h
 ```
- - Save Bios
+Save Bios
 ```sh
 sudo ./atiflash -s 0 CARD-NAME.rom ##Not Working? Use -f flag to force"
 ```
- - Flash Bios
+Flash Bios
 ```sh
 sudo ./atiflash -p 0 CARD-NAME.rom ##Not Working? Use "-f" flag to force"
 ```
-- Enable 1GB Huge Pages
+#### HugePages
+Enable 1GB Huge Pages (usually not needed, use only if not working in the miner)
 ```sh
 sudo ./hugep.sh
 and/or
 sudo ./hugep2.sh
 ```
+#### Overclocking
 - Write Power Play Table, in this exemple for GPU number 1 write the content of V56V3PPT, reset on every reboot!
 ```sh
 sudo ./setPPT.sh 1 V56V3PPT
 ```
-- Monitor GPU, in this exemple it will monitor GPU number 1 and print infos checking every 5s
+- Install amdgpu-clocks to overclock GPU and select P-States; Simply place the script in /usr/local/bin/amdgpu-clocks:
+```sh
+sudo ln -s $(pwd)/amdgpu-clocks /usr/local/bin/amdgpu-clocks
+```
+Then copy exemple to or save/edit: 
+```sh
+cp amdgpu-custom-states.card1 /etc/default/
+```
+If you want your GPU to be overclocked at boot time; place 'amdgpu-clocks.service' in systemd services, remember to edit it to work with your paths/files:
+```sh
+cp amdgpu-clocks.service /lib/systemd/system/
+sudo systemctl enable --now amdgpu-clocks
+```
+#### AMD Memory Tweak
+```sh
+chmod +x amdmemtweak
+sudo cp amdmemtweak /usr/bin
+```
+Apply memory strap on AMD Cards to improve hashrates, This is a 'Stock-Bios-Vega56-Pulse-Hynix-Memory' exemple on GPU 0 and 1 for ETHASH:
+```sh
+sudo amdamdmemtweak --i 0,1 --RAS 30 --RCDRD 14 --RCDWR 6 --RC 38 --RP 12 --REF 15600 --RRDL 4
+```
+#### Monitor GPU 
+In this exemple it will monitor GPU number 1 and print infos checking every 5s
 ```sh
 sudo ./moniterGPU.sh 5 1
 ```
+#### Process Explains
+Here is an exemple of my 'amdgpu-clocks.service' and 'oc.sh' and how things work on my machine:
+NOTE: As you can see above tools don't use the same way to detect GPU's GPU-1 with 'amdgpuclocks' reading is GPU-0 with amdmemtweak, so beware!
+
+1-System-D calls 'oc.sh' script at every boot which will:
+    a-Write PPT to Linux GPU PPT (make sure that all required files are in the directory you are working in)
+    b-Apply AMD-Memory Timings Straps
+    
+2-System-D calls amdgpu-clocks script which will applied: 'amdgpu-custom-states.card1, amdgpu-custom-states.card2...'
+
+/oc.sh
+```sh
+#!/bin/bash
+sudo ./setPPT.sh 1 V56V3PPT
+sudo ./setPPT.sh 2 V56V3PPT
+sudo ./setPPT.sh 3 V56V3PPT
+sudo ./amdmemtweak --i 0,1,2 --RAS 30 --RCDRD 14 --RCDWR 6 --RC 38 --RP 12 --REF 15600 --RRDL 4
+```
+/lib/systemd/system/amdgpu-clocks.service
+```sh
+GNU nano 4.8
+Description=Set custom amdgpu clocks & voltages
+After=multi-user.target rc-local.service systemd-user-sessions.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/laarsn/RainbowMiner
+ExecStart=/home/laarsn/RainbowMiner/oc.sh
+RemainAfterExit=yes
+ExecStart=/usr/bin/amdgpu-clocks
+ExecStop=/usr/bin/amdgpu-clocks restore
+ExecReload=/usr/bin/amdgpu-clocks
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target
+```
+
 ### You are READY!
 Take a deep breath and get ready to configure RainbowMiner
 

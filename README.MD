@@ -8,7 +8,7 @@ XMR: 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArkt
 Ubuntu Server with the HWE kernel, FS Partition (fast I/O Capability) and   auto-swap (file).
 Ubuntu Server with the HWE kernel, FS Partition (fast I/O Capability) and   auto-swap (file).
 ```
-![alt text](https://i.postimg.cc/zBJwNzgj/Capture-d-cran-du-2020-05-30-12-15-58.png)
+![alt text](https://postimg.cc/CnLs3zSJ)
 
 ### Install 
 #### Burn it on USB Key then boot and follow the installer instructions.

@@ -2,11 +2,10 @@
 Guide to set all up for amdgpu's mining in Ubuntu Server LTS environnement; with some Vega 56 Pulse files that you can easily adapt to your config/username! I spent a lot of times in learning, trickering, testing, improving tools and configs to write this guide for beginners level understanding. 
 If it's ok for you (i'm sure it will be..:)..) please consider donation, it would be very appreciated!
 ```sh
-ETH: 0x691318ab130Bb4B82a521C59Cac60B417e003675
-BTC: 3Ec5UjkZxXjM92s53U9w7SRQuhHEm7x2HH
-XMR: 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CW9BZBGeRUR69Tp5AVj
-Ubuntu Server with the HWE kernel, FS Partition (fast I/O Capability) and   auto-swap (file).
-Ubuntu Server with the HWE kernel, FS Partition (fast I/O Capability) and   auto-swap (file).
+BTC: 3DMFX97J1iz65xJRwyiMNNFFWr9qgn4PP3
+LTC: MBeEPQctvNGnFFFsMuJxbLwKMqUBUNHhsN
+ETH: 0x78b0B40b00A96dd2676C5366E43869819e8C0Ae7
+XMR: 83DU4h1opHR5EBFwa7gQtZBa36DfkoE64Siec2D2FeJgcDotAgYWkaB3AXu9Nb6cfJgiENtRmLzXXDnntvL8J48vDkkeTNV
 ```
 ![alt text](https://i.postimg.cc/Hnbv7yKG/Capture-d-cran-du-2020-06-28-19-08-25.png)
 
@@ -92,7 +91,7 @@ tar -Jxvf amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz
 cd amdgpu-pro-19.50-967956-ubuntu-18.04
 ./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless --no-dkms
 ```
-Write back original value from '18.04' to '20.04' en OS-Release infos:
+Write back original value from '18.04' to '20.04' to OS-Release infos:
 ```sh
 sudo nano /etc/os-release
 ```

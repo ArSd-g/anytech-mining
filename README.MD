@@ -22,7 +22,7 @@ sudo visudo
 ```
 Replace: 
 ```sh
-%sudo ALL=(ALL:ALL) ALL line 
+%sudo ALL=(ALL:ALL) ALL
 ```
 to 
 ```sh

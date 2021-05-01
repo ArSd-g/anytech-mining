@@ -108,7 +108,7 @@ sudo apt update && sudo apt upgrade
 sudo apt install build-essential cmake git libuv1-dev libssl-dev libhwloc-dev libmicrohttpd-dev lm-sensors htop opencl-amdgpu-pro-dev clinfo
 sudo reboot
 ```
-### RainbowMiner Installation
+## RainbowMiner Installation
 RainbowMiner is for me, the best multipool mining manager ever coded; feel free to install or choose to mine without!
 [More Here](https://github.com/RainbowMiner/RainbowMiner)
 ```sh

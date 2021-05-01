@@ -12,16 +12,16 @@ XMR: 86sXqcNXaq3UBG9oMAfst1fXRLicKWE6QKzecf7eooiCa6iQkBC4SUFKkS8zJ1nCSkCEUGUncgY
 
 ### Install 
 #### Burn it on USB Key then boot and follow the installer instructions.
-1- Preferred Boot USB mode : UEFI
-2-Choose "Boot and install wit HWE Kernel"
-3-Install Disc: 
--a Install Ubuntu Server LTS using "entire disc" (only if dedicated disc)
+#1- Preferred Boot USB mode : UEFI
+#2-Choose "Boot and install wit HWE Kernel"
+#3-Install Disc: 
+#-a Install Ubuntu Server LTS using "entire disc" (only if dedicated disc)
 Install Ubuntu Server with Ext4 Partition or XFS (fast I/O Capability) and auto-swap creation (file).
--b Choose to create custom install on an existing partitions disc
+#-b Choose to create custom install on an existing partitions disc
 UEFI and Legacy creation will differ refer: **[Install Ubuntu 18.04 UEFI/Legacy mode](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html)**
 Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...
 **[Ubuntu 18.04.5 LTS ISO](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)** 
-4-Wait install process & update finish and reboot to new environnement
+#4-Wait install process & update finish and reboot to new environnement
 
 ### Ubuntu Config
 Sudoers file, enable NOPASSWD for user, all commands
@@ -127,14 +127,16 @@ sudo apt-get install openssh-server
 ```
 You are ready to log into your remote machine type on another computer to access:
 ```sh
-ssh username@public_IP #I Recommend to change port in /etc/ssh/sshd_config to something like "2009" or other! then add "-p portnumber"  
+ssh username@public_IP 
 ```
+I Recommend to change port in /etc/ssh/sshd_config to something like "2009" or other! then add "-p portnumber"  
+
 If you do not know the IP address, you can quickly identify it through the terminal by typing the command:
 ```sh
 ip a
 ```
-If you want to improve security and ssh config (non standard port, or encrypt access) see:https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/
-
+If you want to improve security and ssh config (non standard port, or encrypt access) see: SSH Security https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/
+https://www.techpowerup.com/vgabios/
 ### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html) 
 Terminal multiplexer to prevent mining activities to be stopped when SSH session is closed, you find full config file in my tools, just copy to home folder as .tmux.conf
 
@@ -147,9 +149,11 @@ tmux attach -t 0
 Here is my ultimate collection of tools to Overclock and Mine over Linux.
 NOT WORKING?! =check path/directories commands.
 ```sh
-git clone https://github.com/ArSd-g/AMDGPU-Mining-Ubuntu-20.04-LTS-Server-HWE
-```
+git clone https://github.com/ArSd-g/GUIDE-amdgpu-mining-Ubuntu-Server-LTS-18.04.5
+```https://www.techpowerup.com/vgabios/
+
 #### Atiflash
+Ati flash allow you to dump, save and flash bios on AMD cards, you will find them here: [TechpowerUp](https://www.techpowerup.com/vgabios/)
 ```sh
 chmod +x atiflash
 sudo cp atiflash /usr/bin

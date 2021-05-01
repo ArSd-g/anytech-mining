@@ -11,7 +11,9 @@ XMR: 86sXqcNXaq3UBG9oMAfst1fXRLicKWE6QKzecf7eooiCa6iQkBC4SUFKkS8zJ1nCSkCEUGUncgY
 ![alt text](https://i.postimg.cc/Hnbv7yKG/Capture-d-cran-du-2020-06-28-19-08-25.png)
 
 ### Install 
-#### Burn it on USB Key then boot and follow the installer instructions.
+#### Burn it on USB Key then boot and follow the installer instructions.  
+**[Ubuntu 18.04.5 LTS ISO](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)** 
+
 1- Preferred Boot USB mode : UEFI  
 2-Choose "Boot and install wit HWE Kernel"  
 3-Install Disc:   
@@ -19,8 +21,7 @@ XMR: 86sXqcNXaq3UBG9oMAfst1fXRLicKWE6QKzecf7eooiCa6iQkBC4SUFKkS8zJ1nCSkCEUGUncgY
 Install Ubuntu Server with Ext4 Partition or XFS (fast I/O Capability) and auto-swap creation (file).  
 -b Choose to create custom install on an existing partitions disc  
 UEFI and Legacy creation will differ refer: **[Install Ubuntu 18.04 UEFI/Legacy mode](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html)**  
-Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...  
-**[Ubuntu 18.04.5 LTS ISO](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)**   
+Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...   
 4-Wait install process & update finish and reboot to new environnement  
 
 ### Ubuntu Config
@@ -82,7 +83,6 @@ sudo netplan apply && sudo reboot
 ```
 
 ### Install AMDGPU Driver + OpenCL
-[AMDGPU Community Ubuntu](https://help.ubuntu.com/community/AMDGPU-Driver)
 Download amdgpu-drivers, on 04/21 >=20.40 recommended due to "large alloc memory" possibility!
 ```sh
 wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.40-1147287-ubuntu-18.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-40
@@ -135,8 +135,7 @@ If you do not know the IP address, you can quickly identify it through the termi
 ```sh
 ip a
 ```
-If you want to improve security and ssh config (non standard port, or encrypt access) see: [SSH Security](https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/
-https://www.techpowerup.com/vgabios)
+If you want to improve security and ssh config (non standard port, or encrypt access) see: [SSH Security](https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/)
 
 ### Use [Tmux](http://manpages.ubuntu.com/manpages/xenial/man1/tmux.1.html) 
 Terminal multiplexer to prevent mining activities to be stopped when SSH session is closed, you find full config file in my tools, just copy to home folder as .tmux.conf
@@ -148,13 +147,11 @@ tmux attach -t 0
 
 ### Tools
 Here is my ultimate collection of tools to Overclock and Mine over Linux.
-NOT WORKING?! =check path/directories commands.
 ```sh
 git clone https://github.com/ArSd-g/GUIDE-amdgpu-mining-Ubuntu-Server-LTS-18.04.5
-```https://www.techpowerup.com/vgabios/
-
+```
 #### Atiflash
-Ati flash allow you to dump, save and flash bios on AMD cards, you will find them here: [TechpowerUp](https://www.techpowerup.com/vgabios/)
+Ati flash allow you to dump, save and flash bios on AMD cards, you will find them here:[TechpowerUp](https://www.techpowerup.com/vgabios)
 ```sh
 chmod +x atiflash
 sudo cp atiflash /usr/bin
@@ -169,20 +166,18 @@ Flash Bios
 sudo ./atiflash -p 0 CARD-NAME.rom ##Not Working? Use "-f" flag to force"
 ```
 #### HugePages
-Enable 1GB Huge Pages (usually not needed, use only if not working in the miner)
+Set recommended nbr of hugepages to 4096 per numa node.
 ```sh
-sudo ./hugep.sh
-and/or
-sudo ./hugep2.sh
+sudo nano /proc/sys/vm/nr_hugepages
 ```
 #### Overclocking
-- Write Power Play Table, in this exemple for GPU number 1 write the content of V56V3PPT, reset on every reboot!
+- Write Power Play Table, in this exemple for GPU number 1 write the content of V56V1PPT (Ethash-Algo Vega56-Pulse-P2-1000Mhz-850Mv/Mem-950Mhz-850Mv).!!reset on every reboot!!
 ```sh
-sudo ./setPPT.sh 1 V56V3PPT
+sudo ./setPPT.sh 1 V56V1PPT
 ```
 - Install amdgpu-clocks to overclock GPU and select P-States; Simply place the script in /usr/local/bin/amdgpu-clocks:
-```sh
-sudo ln -s $(pwd)/amdgpu-clocks /usr/local/bin/amdgpu-clocks
+Enable 1GB Huge Pages (usually not needed, use only if not working in the miner)```sh
+sudo cp /usr/amdgpu-clocks
 ```
 Then copy exemple to or save/edit: 
 ```sh
@@ -276,4 +271,4 @@ Special thanks for they awesome job and wonderfull tools and guides to:
 - **https://xmrig.com/docs/miner/hugepages**
 - **https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/**
 - **https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html**
-
+- **https://www.techpowerup.com**

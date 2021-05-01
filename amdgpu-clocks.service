@@ -4,8 +4,8 @@ After=multi-user.target rc-local.service systemd-user-sessions.service
 
 [Service]
 Type=oneshot
-WorkingDirectory=/home/laarsn/RainbowMiner
-ExecStart=/home/laarsn/RainbowMiner/oc.sh
+WorkingDirectory=/home/username/RainbowMiner
+ExecStart=/home/username/RainbowMiner/oc.sh
 RemainAfterExit=yes
 ExecStart=/usr/bin/amdgpu-clocks
 ExecStop=/usr/bin/amdgpu-clocks restore

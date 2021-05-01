@@ -150,22 +150,22 @@ Here is my ultimate collection of tools to Overclock and Mine over Linux. Downlo
 ```sh
 git clone https://github.com/ArSd-g/anytech-mining
 cd anytech-mining
-chmod +x *.sh && chmod +x amdmemtweak && chmod +x amdgpu-clocks
+chmod +x *.sh && chmod +x amd*
 ```
 #### Atiflash
 Ati flash allow you to dump, save and flash bios on AMD cards, you will find them here:[TechpowerUp](https://www.techpowerup.com/vgabios)
 ```sh
-chmod +x atiflash
-sudo cp atiflash /usr/bin
-sudo atiflash -h
+chmod +x amdflash
+sudo cp amdflash /usr/bin
+sudo amdflash -h
 ```
 Save Bios
 ```sh
-sudo ./atiflash -s 0 CARD-NAME.rom ##Not Working? Use -f flag to force"
+sudo ./amdflash -s 0 CARD-NAME.rom ##Not Working? Use -f flag to force"
 ```
 Flash Bios
 ```sh
-sudo ./atiflash -p 0 CARD-NAME.rom ##Not Working? Use "-f" flag to force"
+sudo ./amdflash -p 0 CARD-NAME.rom ##Not Working? Use "-f" flag to force"
 ```
 #### HugePages
 Set recommended nbr of hugepages to 4096 per numa node.
@@ -177,9 +177,9 @@ sudo nano /proc/sys/vm/nr_hugepages
 ```sh
 sudo ./setPPT.sh 1 V56V1PPT
 ```
-- Install amdgpu-clocks to overclock GPU and select P-States; Simply place the script in /usr/local/bin/amdgpu-clocks:
-Enable 1GB Huge Pages (usually not needed, use only if not working in the miner)```sh
-sudo cp /usr/amdgpu-clocks
+- Install amdgpu-clocks to overclock GPU and select P-States; Simply place the script in /usr/bin/amdgpu-clocks:
+```sh
+sudo cp amdgpu-clocks /usr/bin/
 ```
 Then copy exemple to or save/edit: 
 ```sh
@@ -189,15 +189,19 @@ If you want your GPU to be overclocked at boot time; place 'amdgpu-clocks.servic
 ```sh
 cp amdgpu-clocks.service /lib/systemd/system/
 sudo systemctl enable --now amdgpu-clocks
+sudo reboot
+```
+After reboot check if Overclocking service is ok by:
+```sh
+sudo systemctl status amdgpu-clocks
 ```
 #### AMD Memory Tweak
 ```sh
-chmod +x amdmemtweak
 sudo cp amdmemtweak /usr/bin
 ```
 Apply memory strap on AMD Cards to improve hashrates, This is a 'Stock-Bios-Vega56-Pulse-Hynix-Memory' exemple on GPU 0 and 1 for ETHASH:
 ```sh
-sudo amdamdmemtweak --i 0,1 --RAS 30 --RCDRD 14 --RCDWR 6 --RC 38 --RP 12 --REF 15600 --RRDL 4
+sudo ./amdmemtweak --i 0,1 --cl 20 --ras 23 --rcdrd 15 --rcdwr 11 --rc 36 --rp 13 --rrds 3 --rrdl 5 --rtp 6 --faw 12 --cwl 7 --wtrs 4 --wtrl 9 --wr 13 --rfc 248 --REF 65535
 ```
 #### Monitor GPU 
 In this exemple it will monitor GPU number 1 and print infos checking every 5s
@@ -208,11 +212,11 @@ sudo ./moniterGPU.sh 5 1
 Here is an exemple of my 'amdgpu-clocks.service' and 'oc.sh' and how things work on my machine:
 NOTE: As you can see above tools don't use the same way to detect GPU's GPU-1 with 'amdgpuclocks' reading is GPU-0 with amdmemtweak, so beware!
 
-1-System-D calls 'oc.sh' script at every boot which will:
-    a-Write PPT to Linux GPU PPT (make sure that all required files are in the directory you are working in)
-    b-Apply AMD-Memory Timings Straps
+1-System-D calls 'oc.sh' script at every boot which will:  
+    a-Write PPT to Linux GPU PPT (make sure that all required files are in the directory you are working in)  
+    b-Apply AMD-Memory Timings Straps  
     
-2-System-D calls amdgpu-clocks script which will applied: 'amdgpu-custom-states.card1, amdgpu-custom-states.card2...'
+2-System-D calls amdgpu-clocks script which will applied: 'amdgpu-custom-states.card1, amdgpu-custom-states.card2...    
 
 /oc.sh
 ```sh
@@ -220,18 +224,19 @@ NOTE: As you can see above tools don't use the same way to detect GPU's GPU-1 wi
 sudo ./setPPT.sh 1 V56V3PPT
 sudo ./setPPT.sh 2 V56V3PPT
 sudo ./setPPT.sh 3 V56V3PPT
-sudo ./amdmemtweak --i 0,1,2 --RAS 30 --RCDRD 14 --RCDWR 6 --RC 38 --RP 12 --REF 15600 --RRDL 4
+sudo ./amdmemtweak --i 0,1 --cl 20 --ras 23 --rcdrd 15 --rcdwr 11 --rc 36 --rp 13 --rrds 3 --rrdl 5 --rtp 6 --faw 12 --cwl 7 --wtrs 4 --wtrl 9 --wr 13 --rfc 248 --REF 65535
 ```
 /lib/systemd/system/amdgpu-clocks.service
 ```sh
 GNU nano 4.8
+[Unit]
 Description=Set custom amdgpu clocks & voltages
 After=multi-user.target rc-local.service systemd-user-sessions.service
 
 [Service]
 Type=oneshot
-WorkingDirectory=/home/laarsn/RainbowMiner
-ExecStart=/home/laarsn/RainbowMiner/oc.sh
+WorkingDirectory=/home/username/RainbowMiner
+ExecStart=/home/username/RainbowMiner/oc.sh
 RemainAfterExit=yes
 ExecStart=/usr/bin/amdgpu-clocks
 ExecStop=/usr/bin/amdgpu-clocks restore

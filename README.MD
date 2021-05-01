@@ -256,8 +256,8 @@ I hope this guide was clear and precise, feel free to contact me for suggestions
 ```sh
 BTC: 3DMFX97J1iz65xJRwyiMNNFFWr9qgn4PP3
 LTC: MBeEPQctvNGnFFFsMuJxbLwKMqUBUNHhsN
-ETH: 0x78b0B40b00A96dd2676C5366E43869819e8C0Ae7
-XMR: 83DU4h1opHR5EBFwa7gQtZBa36DfkoE64Siec2D2FeJgcDotAgYWkaB3AXu9Nb6cfJgiENtRmLzXXDnntvL8J48vDkkeTNV
+ETH: 0x2A2Ae71baE7EefFB21B3430e488a55f555cb9430
+XMR: 86sXqcNXaq3UBG9oMAfst1fXRLicKWE6QKzecf7eooiCa6iQkBC4SUFKkS8zJ1nCSkCEUGUncgYHG8csZead83wu9LeZAZB
 ```
 
 ### SRCs

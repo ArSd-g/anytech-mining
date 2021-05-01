@@ -266,7 +266,6 @@ Special thanks for they awesome job and wonderfull tools and guides to:
 - **https://github.com/RainbowMiner/RainbowMiner**
 - **https://github.com/czombos/AMDGPU-XMR-ETH-Mining-Ubuntu**
 - **https://github.com/patrickschur/amdvbflash**
-- **https://github.com/StuartIanNaylor/zram-swap-config**
 
 ### Links&Docs
 - **https://releases.ubuntu.com**

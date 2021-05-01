@@ -1,19 +1,27 @@
-# GUIDE_AMDGPU-Mining-Ubuntu-20.04-LTS-Server-HWE
-Guide to set all up for amdgpu's mining in Ubuntu Server LTS environnement; with some Vega 56 Pulse files that you can easily adapt to your config/username! I spent a lot of times in learning, trickering, testing, improving tools and configs to write this guide for beginners level understanding. 
+# GUIDE-amdgpu-mining-Ubuntu-Server-LTS-18.04.5--04/2021--UPDATE
+Guide to set all up for amdgpu's mining in Ubuntu Server LTS environnement; with Vega10 exemple (RX Vega 56 Pulse) files that you can easily adapt to your config/username! 
+I spent a lot of times in learning, trickering, testing, improving tools and configs to write this guide for beginners level understanding. 
 If it's ok for you (i'm sure it will be..:)..) please consider donation, it would be very appreciated!
 ```sh
 BTC: 3DMFX97J1iz65xJRwyiMNNFFWr9qgn4PP3
 LTC: MBeEPQctvNGnFFFsMuJxbLwKMqUBUNHhsN
-ETH: 0x78b0B40b00A96dd2676C5366E43869819e8C0Ae7
-XMR: 83DU4h1opHR5EBFwa7gQtZBa36DfkoE64Siec2D2FeJgcDotAgYWkaB3AXu9Nb6cfJgiENtRmLzXXDnntvL8J48vDkkeTNV
+ETH: 0x2A2Ae71baE7EefFB21B3430e488a55f555cb9430
+XMR: 86sXqcNXaq3UBG9oMAfst1fXRLicKWE6QKzecf7eooiCa6iQkBC4SUFKkS8zJ1nCSkCEUGUncgYHG8csZead83wu9LeZAZB
 ```
 ![alt text](https://i.postimg.cc/Hnbv7yKG/Capture-d-cran-du-2020-06-28-19-08-25.png)
 
 ### Install 
 #### Burn it on USB Key then boot and follow the installer instructions.
-Ubuntu Server with XFS Partition (fast I/O Capability) and auto-swap creation (file).
+1- Preferred Boot USB mode : UEFI
+2-Choose "Boot and install wit HWE Kernel"
+3-Install Disc: 
+-a Install Ubuntu Server LTS using "entire disc" (only if dedicated disc)
+Install Ubuntu Server with Ext4 Partition or XFS (fast I/O Capability) and auto-swap creation (file).
+-b Choose to create custom install on an existing partitions disc
+UEFI and Legacy creation will differ refer: **[Install Ubuntu 18.04 UEFI/Legacy mode](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html)**
 Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...
-**[Ubuntu 20.04 LTS ISO](https://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso)** 
+**[Ubuntu 18.04.5 LTS ISO](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)** 
+4-Wait install process & update finish and reboot to new environnement
 
 ### Ubuntu Config
 Sudoers file, enable NOPASSWD for user, all commands
@@ -34,12 +42,6 @@ sudo ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 sudo locale-gen fr_FR fr_FR.UTF-8
 timedatectl set-local-rtc 1
 sudo dpkg-reconfigure locales
-```
-### HWE Kernel Install 
-```sh
-sudo apt update
-sudo apt install --install-recommends linux-generic-hwe-20.04
-sudo apt upgrade
 ```
 ### AMD tweaks, fall back to ethX network interface naming
 Edit the grub configuration file:
@@ -76,30 +78,24 @@ network:
 ```
 Apply Config:
 ```sh
-sudo netplan apply
-sudo reboot
+sudo netplan apply && sudo reboot
 ```
 
 ### Install AMDGPU Driver + OpenCL
 [AMDGPU Community Ubuntu](https://help.ubuntu.com/community/AMDGPU-Driver)
-NOTE: If you experience some problems or low hashrates stick to 19.50 or 19.30 (RX Vega56/64 for exemple).
-Modify OS-Release infos replacing '20.04' by '18.04':
+Download amdgpu-drivers, on 04/21 >=20.40 recommended due to "large alloc memory" possibility!
 ```sh
-sudo nano /etc/os-release
-wget https://drivers.amd.com/drivers/linux/19.50/amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-rad-lin-19-50-unified
-tar -Jxvf amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz
-cd amdgpu-pro-19.50-967956-ubuntu-18.04
-./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless --no-dkms
+wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.40-1147287-ubuntu-18.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-40
+tar -Jxvf amdgpu-pro-20.40-1147287-ubuntu-18.04.tar.xz
+cd amdgpu-pro-20.40-1147287-ubuntu-18.04
 ```
-Write back original value from '18.04' to '20.04' to OS-Release infos:
+I experienced some trouble with drivers to make Vega10 running ok at full load. 
+I recommend to install the full pro stack even if no monitors are connected.
 ```sh
-sudo nano /etc/os-release
+./amdgpu-pro-install -y
 ```
-Or go to the latest drivers for Ubuntu 20.04
+Or you can choose to install needed Opencl components only
 ```sh
-wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20
-tar -Jxvf amdgpu-pro-20.20-1089974-ubuntu-20.04.tar.xz.l
-cd amdgpu-pro-20.20-1089974-ubuntu-20.04
 ./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless
 ```
 Add yourself to the video group
@@ -109,7 +105,7 @@ sudo usermod -aG video $LOGNAME
 ### Upgrade and install tools (usefull only; no deep shits!)
 ```sh
 sudo apt update && sudo apt upgrade
-sudo apt install wget build-essential cmake git libuv1-dev libssl-dev libhwloc-dev libmicrohttpd-dev lm-sensors htop opencl-amdgpu-pro-dev clinfo
+sudo apt install build-essential cmake git libuv1-dev libssl-dev libhwloc-dev libmicrohttpd-dev lm-sensors htop opencl-amdgpu-pro-dev clinfo
 sudo reboot
 ```
 ### RainbowMiner Installation
@@ -121,7 +117,7 @@ git clone https://github.com/rainbowminer/RainbowMiner
 cd RainbowMiner
 chmod +x *.sh
 sudo ./install.sh
-sudo ./start.sh ### Will start RainbowMiner; insure all is ready for it!
+./start.sh ### Will start RainbowMiner; insure all is ready for it!
 ```
 ### SSH Remote Control
 If you didn't check openssh installation during Ubuntu install:
@@ -131,7 +127,7 @@ sudo apt-get install openssh-server
 ```
 You are ready to log into your remote machine type on another computer to access:
 ```sh
-ssh username@public_IP
+ssh username@public_IP #I Recommend to change port in /etc/ssh/sshd_config to something like "2009" or other! then add "-p portnumber"  
 ```
 If you do not know the IP address, you can quickly identify it through the terminal by typing the command:
 ```sh
@@ -146,6 +142,7 @@ For exemple: if your SSH session number 0 ends and you want to get back existing
 ```sh
 tmux attach -t 0
 ```
+
 ### Tools
 Here is my ultimate collection of tools to Overclock and Mine over Linux.
 NOT WORKING?! =check path/directories commands.
@@ -273,4 +270,5 @@ Special thanks for they awesome job and wonderfull tools and guides to:
 - **https://www.cyberciti.biz/tips/linux-swap-space.html**
 - **https://xmrig.com/docs/miner/hugepages**
 - **https://anansewaa.com/quick-tips-to-harden-ssh-on-ubuntu/**
+- **https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html**
 

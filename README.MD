@@ -208,7 +208,7 @@ In this exemple it will monitor GPU number 1 and print infos checking every 5s
 ```sh
 sudo ./moniterGPU.sh 5 1
 ```
-#### Process Explains
+## Process Explained
 Here is an exemple of my 'amdgpu-clocks.service' and 'oc.sh' and how things work on my machine:
 NOTE: As you can see above tools don't use the same way to detect GPU's GPU-1 with 'amdgpuclocks' reading is GPU-0 with amdmemtweak, so beware!
 

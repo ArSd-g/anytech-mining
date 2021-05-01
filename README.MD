@@ -1,4 +1,4 @@
-# GUIDE-amdgpu-mining-Ubuntu-Server-LTS-18.04.5--04/2021-UPDATED
+## GUIDE-amdgpu-mining-Ubuntu-Server-LTS-18.04.5--04/2021-UPDATED
 Guide to set all up for amdgpu's mining in Ubuntu Server LTS environnement; with Vega10 exemple (RX Vega 56 Pulse) files that you can easily adapt to your config/username!   
 
 I spent a lot of times in learning, trickering, testing, improving tools and configs to write this guide for beginners level understanding.   

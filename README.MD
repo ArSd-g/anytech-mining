@@ -146,9 +146,11 @@ tmux attach -t 0
 ```
 
 ### Tools
-Here is my ultimate collection of tools to Overclock and Mine over Linux.
+Here is my ultimate collection of tools to Overclock and Mine over Linux. Download and make it able to run.
 ```sh
-git clone https://github.com/ArSd-g/GUIDE-amdgpu-mining-Ubuntu-Server-LTS-18.04.5
+git clone https://github.com/ArSd-g/anytech-mining
+cd anytech-mining
+chmod +x *.sh && chmod +x amdmemtweak && chmod +x amdgpu-clocks
 ```
 #### Atiflash
 Ati flash allow you to dump, save and flash bios on AMD cards, you will find them here:[TechpowerUp](https://www.techpowerup.com/vgabios)

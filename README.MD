@@ -12,16 +12,16 @@ XMR: 86sXqcNXaq3UBG9oMAfst1fXRLicKWE6QKzecf7eooiCa6iQkBC4SUFKkS8zJ1nCSkCEUGUncgY
 
 ### Install 
 #### Burn it on USB Key then boot and follow the installer instructions.
-#1- Preferred Boot USB mode : UEFI
-#2-Choose "Boot and install wit HWE Kernel"
-#3-Install Disc: 
-#-a Install Ubuntu Server LTS using "entire disc" (only if dedicated disc)
-Install Ubuntu Server with Ext4 Partition or XFS (fast I/O Capability) and auto-swap creation (file).
-#-b Choose to create custom install on an existing partitions disc
-UEFI and Legacy creation will differ refer: **[Install Ubuntu 18.04 UEFI/Legacy mode](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html)**
-Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...
-**[Ubuntu 18.04.5 LTS ISO](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)** 
-#4-Wait install process & update finish and reboot to new environnement
+#1- Preferred Boot USB mode : UEFI  
+#2-Choose "Boot and install wit HWE Kernel"  
+#3-Install Disc:   
+#-a Install Ubuntu Server LTS using "entire disc" (only if dedicated disc)  
+Install Ubuntu Server with Ext4 Partition or XFS (fast I/O Capability) and auto-swap creation (file).  
+#-b Choose to create custom install on an existing partitions disc  
+UEFI and Legacy creation will differ refer: **[Install Ubuntu 18.04 UEFI/Legacy mode](https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-ubuntu-18-04-lts-bionic-beaver-on-uefi-and-legacy-bios-system.html)**  
+Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...  
+**[Ubuntu 18.04.5 LTS ISO](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)**   
+#4-Wait install process & update finish and reboot to new environnement  
 
 ### Ubuntu Config
 Sudoers file, enable NOPASSWD for user, all commands

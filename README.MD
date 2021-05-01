@@ -172,7 +172,7 @@ Set recommended nbr of hugepages to 4096 per numa node.
 ```sh
 sudo nano /proc/sys/vm/nr_hugepages
 ```
-#### Overclocking
+## Overclocking
 - Write Power Play Table, in this exemple for GPU number 1 write the content of V56V1PPT (Ethash-Algo Vega56-Pulse-P2-1000Mhz-850Mv/Mem-950Mhz-850Mv).!!reset on every reboot!!
 ```sh
 sudo ./setPPT.sh 1 V56V1PPT

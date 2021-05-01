@@ -10,7 +10,7 @@ XMR: 86sXqcNXaq3UBG9oMAfst1fXRLicKWE6QKzecf7eooiCa6iQkBC4SUFKkS8zJ1nCSkCEUGUncgY
 ```
 ![alt text](https://i.postimg.cc/Hnbv7yKG/Capture-d-cran-du-2020-06-28-19-08-25.png)
 
-### Install 
+## Install 
 #### Burn it on USB Key then boot and follow the installer instructions.  
 **[Ubuntu 18.04.5 LTS ISO](https://releases.ubuntu.com/18.04/ubuntu-18.04.5-live-server-amd64.iso)** 
 
@@ -24,7 +24,7 @@ UEFI and Legacy creation will differ refer: **[Install Ubuntu 18.04 UEFI/Legacy 
 Also feel free to enable openssh deamon install for remote control of your RIG, see further for config...   
 4-Wait install process & update finish and reboot to new environnement  
 
-### Ubuntu Config
+## Ubuntu Config
 Sudoers file, enable NOPASSWD for user, all commands
 ```sh
 sudo visudo
@@ -145,7 +145,7 @@ For exemple: if your SSH session number 0 ends and you want to get back existing
 tmux attach -t 0
 ```
 
-### Tools
+## Tools
 Here is my ultimate collection of tools to Overclock and Mine over Linux. Download and make it able to run.
 ```sh
 git clone https://github.com/ArSd-g/anytech-mining

@@ -1,0 +1,14 @@
+# Set custom GPU states 6 & 7:
+OD_SCLK:
+2:       1000MHz         850mV
+# Set custom memory states 1 & 2:
+OD_MCLK:
+3:       950MHz         850mV
+# Only allow SCLK states 5, 6 & 7:
+FORCE_SCLK: 2
+# Force fixed memory state:
+FORCE_MCLK: 3
+# Force power limit (in micro watts):
+FORCE_POWER_CAP: 160000000
+# In order to allow FORCE_SCLK & FORCE_MCLK:
+FORCE_PERF_LEVEL: manual

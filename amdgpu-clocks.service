@@ -1,0 +1,16 @@
+[Unit]
+Description=Set custom amdgpu clocks & voltages
+After=multi-user.target rc-local.service systemd-user-sessions.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/laarsn/RainbowMiner
+ExecStart=/home/laarsn/RainbowMiner/oc.sh
+RemainAfterExit=yes
+ExecStart=/usr/bin/amdgpu-clocks
+ExecStop=/usr/bin/amdgpu-clocks restore
+ExecReload=/usr/bin/amdgpu-clocks
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target

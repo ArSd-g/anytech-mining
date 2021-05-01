@@ -1,9 +1,0 @@
-#!/bin/sh
-
-case $1 in
-  post)
-    if $(systemctl is-active --quiet amdgpu-clocks.service); then
-        /usr/bin/systemctl reload amdgpu-clocks
-    fi
-    ;;
-esac

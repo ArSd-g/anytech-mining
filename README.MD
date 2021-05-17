@@ -92,12 +92,13 @@ cd amdgpu-pro-20.40-1147287-ubuntu-18.04
 ```
 I experienced some trouble with drivers to make Vega10 running ok at full load. 
 I recommend to install the full pro stack even if no monitors are connected.
+*=rocr, replace depreciated *=pal, option, adapt as driver needs
 ```sh
 ./amdgpu-pro-install -y
 ```
 Or you can choose to install needed Opencl components only
 ```sh
-./amdgpu-pro-install -y --opencl=rocr,legacy,rocm --headless
+./amdgpu-pro-install -y --opencl=rocr,legacy,rocm --headless 
 ```
 Add yourself to the video group
 ```sh

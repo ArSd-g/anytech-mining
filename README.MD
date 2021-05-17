@@ -97,7 +97,7 @@ I recommend to install the full pro stack even if no monitors are connected.
 ```
 Or you can choose to install needed Opencl components only
 ```sh
-./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless
+./amdgpu-pro-install -y --opencl=rocr,legacy,rocm --headless
 ```
 Add yourself to the video group
 ```sh

@@ -86,6 +86,7 @@ sudo netplan apply && sudo reboot
 ### Install AMDGPU Driver + OpenCL
 Download amdgpu-drivers, on 04/21 >=20.40 recommended due to "large alloc memory" possibility!
 ```sh
+sudo dpkg --add-architecture i386
 wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.40-1147287-ubuntu-18.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-40
 tar -Jxvf amdgpu-pro-20.40-1147287-ubuntu-18.04.tar.xz
 cd amdgpu-pro-20.40-1147287-ubuntu-18.04

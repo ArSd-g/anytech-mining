@@ -104,11 +104,11 @@ Or you can choose to install needed Opencl components only
 Add yourself to the video group
 ```sh
 sudo usermod -aG video $LOGNAME
-```
+```opencl-amdgpu-pro
 ### Upgrade and install tools (usefull only; no deep shits!)
 ```sh
 sudo apt update && sudo apt upgrade
-sudo apt install build-essential cmake git libuv1-dev libssl-dev libhwloc-dev libmicrohttpd-dev lm-sensors htop opencl-amdgpu-pro-dev clinfo
+sudo apt install build-essential cmake git libuv1-dev libssl-dev libhwloc-dev libmicrohttpd-dev lm-sensors htop opencl-amdgpu-pro-dev opencl-amdgpu-pro 
 sudo reboot
 ```
 ## RainbowMiner Installation

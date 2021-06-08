@@ -101,7 +101,7 @@ cd amdgpu-pro-20.40-1147287-ubuntu-18.04
 Add yourself to the video group
 ```sh
 sudo usermod -aG video $LOGNAME
-```opencl-amdgpu-pro
+```
 ### Upgrade and install tools (usefull only; no deep shits!)
 ```sh
 sudo apt update && sudo apt upgrade

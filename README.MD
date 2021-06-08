@@ -44,6 +44,7 @@ sudo ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 sudo locale-gen fr_FR fr_FR.UTF-8
 timedatectl set-local-rtc 1
 sudo dpkg-reconfigure locales
+sudo apt install libnuma-dev
 ```
 ### AMD tweaks, fall back to ethX network interface naming
 Edit the grub configuration file:
@@ -66,7 +67,7 @@ Edit network configuration file:
 ```sh
 ls /etc/netplan/
 ```
-Replace enpXsX to eth0 in *.yaml
+Replace enpXsX to eth0 in *.yamllibnuma-dev
 ```sh
 sudo nano /etc/netplan/*.yaml
 ```
@@ -84,21 +85,17 @@ sudo netplan apply && sudo reboot
 ```
 
 ### Install AMDGPU Driver + OpenCL
-Download amdgpu-drivers, on 04/21 >=20.40 recommended due to "large alloc memory" possibility!
+Download amdgpu-drivers with rocm-libs, on 04/21 >=20.40 recommended due to "large alloc memory" possibility!
 ```sh
 sudo dpkg --add-architecture i386
+sudo apt install wget gnupg2
+wget -q -O - https://repo.radeon.com/rocm/rocm.gpg.key | sudo apt-key add -
+echo 'deb [arch=amd64] https://repo.radeon.com/rocm/apt/debian/ ubuntu main' | sudo tee /etc/apt/sources.list.d/rocm.list
+sudo apt update
+sudo apt install rocm-smi-lib4.2.0
 wget https://drivers.amd.com/drivers/linux/amdgpu-pro-20.40-1147287-ubuntu-18.04.tar.xz --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-40
 tar -Jxvf amdgpu-pro-20.40-1147287-ubuntu-18.04.tar.xz
 cd amdgpu-pro-20.40-1147287-ubuntu-18.04
-```
-I experienced some trouble with drivers to make Vega10 running ok at full load. 
-I recommend to install the full pro stack even if no monitors are connected.
-*=rocr, replace depreciated *=pal, option, adapt as driver needs
-```sh
-./amdgpu-pro-install -y
-```
-Or you can choose to install needed Opencl components only
-```sh
 ./amdgpu-pro-install -y --opencl=pal,legacy,rocm --headless 
 ```
 Add yourself to the video group

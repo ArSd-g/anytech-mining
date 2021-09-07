@@ -144,6 +144,24 @@ For exemple: if your SSH session number 0 ends and you want to get back existing
 ```sh
 tmux attach -t 0
 ```
+#### Autostart Miners
+Create a script using tmux to start miners (this is an exemple for 2 sessions in parallel)
+```sh
+#!/bin/sh
+tmux new-session -d -s Session1
+tmux new-session -d -s Session2
+tmux send-keys -t Session1 "cd ~/teamredminer-v0.8.4-linux && sudo ./start_eth.sh" C-m
+tmux send-keys -t Session2 "cd RainbowMiner && ./start.sh" C-m
+```
+Make it executable
+```sh
+chmod +x *.sh
+```
+Use Crontab to execute autostart script
+```sh
+crontab -e
+```
+Then add full path to your script
 
 ## Tools
 Here is my ultimate collection of tools to Overclock and Mine over Linux. Download and make it able to run.

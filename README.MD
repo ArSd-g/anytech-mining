@@ -162,6 +162,7 @@ Use Crontab to execute autostart script
 crontab -e
 ```
 Then add full path to your script
+EDIT: you can edit your /etc/crontab as root (sudo) to run as specific user, not as root. Very important for RainbowMiner !!!
 
 ## Tools
 Here is my ultimate collection of tools to Overclock and Mine over Linux. Download and make it able to run.
